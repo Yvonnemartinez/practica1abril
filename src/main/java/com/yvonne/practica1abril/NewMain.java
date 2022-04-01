@@ -1,35 +1,33 @@
+package com.mycompany.practica1bril;
 
-package com.yvonne.practica1abril;
-
-/**
- *
- * @author Ivonne
- */
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
+
 
 public class NewMain {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+
         Scanner leer = new Scanner(System.in);
         File archivo1 = new File("C:\\Users\\Ivonne\\Documents\\NetBeansProjects\\practica1abril\\DIR\\archivo1.txt");
         File archivo2 = new File("C:\\Users\\Ivonne\\Documents\\NetBeansProjects\\practica1abril\\DIR\\archivo2.txt");
         File directorioActual = new File("C:\\Users\\Ivonne\\Documents\\NetBeansProjects\\practica1abril");
         File DIR = new File("C:\\Users\\Ivonne\\Documents\\NetBeansProjects\\practica1abril\\DIR");
         MiniFileManager fileManager = null;
-        
+
         try {
 
             boolean bucleMenu = true;
 
             while (bucleMenu) {
 
-                System.out.println("      ");
-                System.out.println("Que accion quieres realizar?");
+                System.out.println("=====");
+                System.out.println("Que acción quieres realizar?");
                 System.out.println("   ");
                 System.out.println("1. pwd ");
                 System.out.println("2. cd <DIR> ");
@@ -39,14 +37,15 @@ public class NewMain {
                 System.out.println("6. rm <FILE> ");
                 System.out.println("7. mv <FILE1> <FILE2> ");
                 System.out.println("8. help ");
-                System.out.println("9. salir.");
-                System.out.println("   ");
+                System.out.println("9. info <FILE>");
+                System.out.println("10. salir.");
+                System.out.println("====");
 
                 int opcion;
 
                 while (!leer.hasNextInt()) {
 
-                    System.out.println("Error, introduce un número del '1' al '6' ");
+                    System.out.println("Error, introduce un número del '1' al '10' ");
                     leer.next();
                 }
                 opcion = leer.nextInt();
@@ -85,7 +84,11 @@ public class NewMain {
                         System.out.println("----------------------------------------");
                         fileManager.help();
                         break;
-                    case 9:
+                    case 9: 
+                         System.out.println("----------------------------------------");
+                         fileManager.info(directorioActual);
+                        break;
+                    case 10:
                         bucleMenu = false;
                         break;
 
@@ -94,10 +97,11 @@ public class NewMain {
                 }
 
             }
-        } catch (NoExisteFichero e) {
+        } catch (FileNotFoundException e) {
             System.err.println("Error: " + e.getMessage());
         }
-        System.out.println("That´s all folks!");
+        System.out.println("Final");
+
     }
-    
 }
+
